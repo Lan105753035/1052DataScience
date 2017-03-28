@@ -11,12 +11,14 @@ query_func<-function(query_m, i)
     TN<-cM[1,1]
     FP<-cM[1,2]
     FN<-cM[2,1]
+    eval <- prediction(d$pred.score,d$reference)
   }
   else if (query_m == "female") {
     TP<-cM[1,1]
     TN<-cM[2,2]
     FP<-cM[2,1]
     FN<-cM[1,2]
+    eval <- prediction(1 - d$pred.score,d$reference)
   } else {
     stop(paste("ERROR: unknown query function", query_m))
   }
@@ -24,8 +26,6 @@ query_func<-function(query_m, i)
   specificity<<-round (TN/(TN+FP),digits = 2)
   precision<<-round (TP/(TP+FP),digits = 2)
   F1<<-round (2*precision*sensitivity/(precision+sensitivity),digits = 2)
-  
-  eval <- prediction(1 - d$pred.score,d$reference)
   AUC <<- round(attributes(performance(eval,'auc'))$y.values[[1]], digits = 2)
 }
 
