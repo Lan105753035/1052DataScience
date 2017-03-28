@@ -26,13 +26,13 @@ query_func<-function(query_m, i)
   F1<<-round (2*precision*sensitivity/(precision+sensitivity),digits = 2)
   
   eval <- prediction(1 - d$pred.score,d$reference)
-  AUC <- round(attributes(performance(eval,'auc'))$y.values[[1]], digits = 2)
+  AUC <<- round(attributes(performance(eval,'auc'))$y.values[[1]], digits = 2)
 }
 
 # read parameters
 args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) {
-  stop("USAGE: Rscript hw1.R --target male|female --files file1 file2 ... filen --o“out out.csv", call.=FALSE)
+  stop("USAGE: Rscript hw1.R --target male|female --files file1 file2 ... filen --oâ€œout out.csv", call.=FALSE)
 }
 
 # parse parameters
