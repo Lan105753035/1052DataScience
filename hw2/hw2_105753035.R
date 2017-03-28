@@ -32,7 +32,7 @@ query_func<-function(query_m, i)
 # read parameters
 args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) {
-  stop("USAGE: Rscript hw1.R --target male|female --files file1 file2 ... filen --o“out out.csv", call.=FALSE)
+  stop("USAGE: Rscript hw1.R --target male|female --files file1 file2 ... filen --out out.csv", call.=FALSE)
 }
 
 # parse parameters
@@ -82,4 +82,4 @@ index<-sapply(out_data[,c("sensitivity","specificity","F1","AUC")],which.max)
 
 # output file
 out_data<-rbind(out_data,c("highest",names[index]))
-write.table(out_data, file=out_f, row.names = F, quote = F)
+write.csv(out_data, file=out_f, row.names = F, quote = F)
