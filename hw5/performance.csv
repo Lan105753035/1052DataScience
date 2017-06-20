@@ -1,0 +1,4 @@
+set,accuracy
+training,0.849689440993789
+calibration,0.9125
+test,0.9125
